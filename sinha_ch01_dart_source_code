@@ -1,0 +1,398 @@
+//code 1.1
+sudo apt-get update
+
+ sudo apt-get install apt-transport-https
+
+ sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+
+ sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+
+
+//code 1.2
+sudo apt-get update
+
+ sudo apt-get install dart
+
+
+
+//code 1.3
+$ dart --version
+Dart VM version: 2.4.0 (Unknown timestamp) on "linux_x64"
+
+//code 1.4
+./studio.sh
+
+
+//code 1.5
+sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+
+//code 1.6
+sudo yum install zlib.i686 ncurses-libs.i686 bzip2-libs.i686
+
+
+//code 1.7
+sudo snap install intellij-idea-community –classic
+
+
+//code 1.8
+main() {
+  print("Hello World!");
+  //calling a function
+  doSomething();
+}
+//define a function
+doSomething(){
+  print("Do something!")
+  //calling a function inside another function
+      lifeIsShort();
+}
+//defining another function
+lifeIsShort(){
+  print("Life is too short to do so many things.");
+}
+
+
+//code 1.11
+int myAge = 12;
+String myName = "John Smith";
+
+//code 1.12
+var myAge = 12;
+var myName = "John Smith";
+
+
+//code 1.13
+main() {
+  print("Hello World!");
+  int myNumber;
+  print(myNumber);
+}
+
+
+//code 1.14
+main() {
+  String saySomething = "Hello John Smith";
+  var isFalse = true;
+  if(saySomething == null){
+    print("It is ${isFalse}");
+  }else print("It is not ${isFalse}");
+}
+
+
+//code 1.15
+main() {
+  const firstName = "Sanjib";
+  final lastName = "Sinha";
+  String firstName = "John";
+  String lastName = "Sinha";
+}
+
+
+//code 1.16
+main() {
+  var one = int.parse('1');
+  print(one);
+  if(one.isOdd){
+    print("It is an odd number.");
+  } else print("It is an even number.");
+}
+
+
+//code 1.17
+main() {
+  var one = int.parse('1');
+  var doubleToString = double.parse('23.564');
+  print(one);
+  print(doubleToString);
+  if(one.isOdd && doubleToString.isFinite){
+    print("The first number is an odd number and the second one is a double ${doubleToString} and a finite number.");
+  } else print("It is an even number and the second one is not a double ${doubleToString} and a non-finite number.");
+}
+
+
+//code 1.18
+main() {
+  int myNUmber = 542;
+  double myDouble = 3.42;
+  String numberToString = myNUmber.toString();
+  String doubleToString = myDouble.toString();
+  if ((numberToString == '542' && myNUmber.isEven) && (doubleToString == '3.42' && myDouble.isFinite)){
+    print("Both have been converted from an even number ${myNUmber} and a finite double ${myDouble} to string. ");
+  } else print("Number and double have not been converted to string.");
+}
+
+
+//code 1.19
+main(List<String> arguments) {
+  //print("Hello World ${IdeaProjects.calculate()}");
+  String bengaliString = "বাংলা লেখা";
+  String englishString = "This is some English text.";
+  print("Here is some Bengali script - ${bengaliString} and some English script ${englishString}");
+}
+
+
+//code 1.20
+main(List<String> arguments) {
+  String stringWithSingleQuote = 'I\'m a single quote';
+  String stringWithDoubleQuote = "I'm a double quote.";
+  print("Using delimiter in single quote - ${stringWithSingleQuote} and using delimiter in double quote - ${stringWithDoubleQuote}");
+}
+
+
+//output of code 1.21
+Using delimiter in the single quote - I'm a single quote and using delimiter in the double quote - I'm a double quote
+We have put the value of expression inside a string by using our variable in this way: ${stringWithSingleQuote}.
+
+
+//code 1.22
+main(List<String> arguments) {
+  String stringInterpolation = 'string ' + 'interpolation';
+  print(stringInterpolation);
+  String multiLIneString = """
+      This is
+      a multi line
+      string.
+  """;
+  print(multiLIneString);
+}
+
+//code 1.23
+main(List<String> arguments) {
+  const aConstantInteger = 12;
+  const aConstantBoolean = true;
+  const aConstantString = "I am a constant string.";
+  const aValidConstantString = "this is a constant integer: ${aConstantInteger}, a constant boolean: ${aConstantBoolean}, a constant string: ${aConstantString}";
+  print("This is a valid constant string and the output is: $aValidConstantString");
+}
+
+
+//code 1.24
+main(List<String> arguments) {
+  var aConstantInteger = 12;
+  var aConstantBoolean = true;
+  var aConstantString = "I am a constant string.";
+  const aValidConstantString = "this is a constant integer: ${aConstantInteger}, a constant boolean: ${aConstantBoolean}, a constant string: ${aConstantString}";
+  print("This is a valid constant string and the output is: $aValidConstantString");
+}
+
+
+
+//code 1.25
+main(List<String> arguments) {
+  bool isTrue = true;
+  bool isFalse = false;
+  if(isFalse || isTrue){
+    print("It is true.");
+  } else print("It is false.");
+}
+
+
+//code 1.26
+main(List<String> arguments) {
+  bool isTrue = true;
+  bool isFalse = false;
+  if(isFalse && isTrue){
+    print("It is true.");
+  } else print("It is false.");
+}
+
+
+//code 1.27
+main(List<String> arguments) {
+  List fruitCollection = ['Mango', 'Apple', 'Jack fruit'];
+  print(fruitCollection[0]);
+}
+
+//code 1.28
+main(List<String> arguments) {
+  var fruitCollection = {'Mango', 'Apple', 'Jack fruit'};
+  print(fruitCollection.lookup('Apple'));
+}
+
+
+//code 1.29
+main(List<String> arguments) {
+  var fruitCollection = {'Mango', 'Apple', 'Jack fruit'};
+  print(fruitCollection.lookup('Something Else'));
+}
+
+//code 1.30
+main(List<String> arguments) {
+  var myInteger = {};
+  if(myInteger.isEmpty){
+    print("It is a map that has no key, value pair.");
+  } else print("It is a set that has no key, value pair.");
+}
+
+
+//code 1.31
+main(List<String> arguments) {
+  var myProducts = {
+    'first' : 'TV',
+    'second' : 'Refrigerator',
+    'third' : 'Mobile',
+    'fourth' : 'Tablet',
+    'fifth' : 'Computer'
+  };
+  print(myProducts['third']);
+}
+
+
+
+//code 1.32
+main(List<String> arguments) {
+  var myProducts = {
+    1 : 'TV',
+    2 : 'Refrigerator',
+    3 : 'Mobile',
+    4 : 'Tablet',
+    5 : 'Computer'
+  };
+  print(myProducts[3]);
+}
+
+
+//code 1.33
+main(List<String> arguments) {
+  Set mySet = {1, 2, 3};
+  var myProducts = {
+    1 : 'TV',
+    2 : 'Refrigerator',
+    3 : mySet.lookup(2),
+    4 : 'Tablet',
+    5 : 'Computer'
+  };
+  print(myProducts[3]);
+}
+
+
+//code 1.34
+main(List<String> arguments) {
+  var myProducts = Map();
+  myProducts['first'] ='TV';
+  myProducts['second'] ='Mobile';
+  myProducts['third'] ='Refrigerator';
+  if(myProducts.containsValue('Mobile')){
+    print("Our products list has ${myProducts['second']}");
+  }
+}
+
+//code 1.35
+main(List<String> arguments) {
+  int aNum = 12;
+  double aDouble = 2.25;
+  var theResult = aNum ~/ aDouble;
+  print(theResult);
+}
+
+
+//code 1.37
+main(List<String> arguments) {
+  int aNum = 12;
+  double aDouble = 2.25;
+  var theResult = aNum / aDouble;
+  print(theResult);
+}
+
+//code 1.38
+main(List<String> arguments) {
+  int aNum = 12;
+  aNum++;
+  ++aNum;
+  int anotherNum = aNum + 1;
+  print(anotherNum);
+}
+
+
+//code 1.39
+main(List<String> arguments) {
+  int firstNum = 40;
+  int secondNum = 41;
+  if (firstNum != secondNum){
+    print("$firstNum is not equal to the $secondNum");
+  } else print("$firstNum is equal to the $secondNum");
+}
+
+
+//code 1.40
+main(List<String> arguments) {
+  int firstNum = 40;
+  int secondNum = 40;
+  if (firstNum == secondNum){
+    print("$firstNum is equal to the $secondNum");
+  } else print("$firstNum is not equal to the $secondNum");
+}
+
+
+//code 1.41
+main(List<String> arguments) {
+  int firstNum = 40;
+  int secondNum = 40;
+  int thirdNum = 74;
+  int fourthNum = 56;
+  if (firstNum == secondNum || thirdNum == fourthNum){
+    print("If choice between 'true' or 'false', the 'true' gets the precedence.");
+  } else print("If choice between 'true' or 'false', the 'false' gets the precedence.");
+}
+
+
+//code 1.42
+main(List<String> arguments) {
+  int firstNum = 40;
+  int secondNum = 40;
+  int thirdNum = 74;
+  int fourthNum = 56;
+  if (firstNum == secondNum && thirdNum == fourthNum){
+    print("If choice between 'true' or 'false', in this case the 'true' gets the precedence.");
+  } else print("If choice between 'true' or 'false', in this case the 'false' gets the precedence.");
+}
+
+
+//code 1.43
+main(List<String> arguments) {
+  int aNUmber = 35;
+  if(!(aNUmber != 150) && aNUmber <= 150){
+    print("It's true");
+  } else print("It's false.");
+}
+
+
+//code 1.44
+main(List<String> arguments) {
+  int myNumber = 13;
+  bool isTrue = true;
+  print(myNumber is int);
+  print(myNumber is! int);
+  print(myNumber is! bool);
+  print(myNumber is bool);
+}
+
+//code 1.45
+main(List<String> arguments) {
+  int firstNum = 10;
+  int secondNum;
+  if(firstNum == 10) print("The value of ${firstNum} is set.");
+  if (secondNum == null) print("It is true.");
+  secondNum ??= firstNum;
+  print(secondNum);
+}
+
+//code 1.46
+main(List<String> arguments) {
+  int firstNum = 10;
+  int secondNum;
+  if(firstNum == 10) print("The value of ${firstNum} is set.");
+  if (secondNum == null) print("It is true.");
+  secondNum ??= firstNum;
+  print(secondNum);
+  print("After using an assignment operator, the value changes.");
+  secondNum += secondNum;
+  print(secondNum);
+  print("After using an assignment operator, the value changes again.");
+  secondNum -= secondNum;
+  print(secondNum);
+  if (secondNum == null) print("It is true.");
+  else print("it is false, because the 'secondNUm' has the value of ${secondNum} now.");
+}
+
+

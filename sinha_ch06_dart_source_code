@@ -1,0 +1,243 @@
+//code 6.1
+class Cart{
+
+  Function addingTwoItems = (int item1, int item2){
+
+    var sum = item1 + item2;
+    return sum;
+
+  };
+
+}
+
+main(List<String> arguments){
+
+  var cart = Cart();
+  print("Your total price is:");
+  print(cart.addingTwoItems(120, 458));  
+}
+
+
+//code 6.2
+class Cart{
+
+  Function ourReturnPolicy = (String messageToCustomer) { 
+	return messageToCustomer; 
+};
+
+  var returnUpdateCustomer = (String updateCustomer) => updateCustomer;
+
+}
+
+main(List<String> arguments){
+  var cart = Cart();
+  print(cart.ourReturnPolicy("Please read our return policy"));
+  print(cart.returnUpdateCustomer("Your item has been shipped."));  
+}
+
+
+//code 6.3
+class LambdaCode{
+  // here addingTwonumbers is a nameless function
+  Function addingTwonumbers = (int x, int y){
+    var sum = x + y;
+    return sum;
+  };
+}
+
+main(List<String> arguments){
+  var lambdaShow = LambdaCode();
+  print(lambdaShow.addingTwonumbers(12, 47));
+}
+
+
+//code 6.4
+class LambdaCode{
+  // here addingTwonumbers is a nameless function
+  Function addingTwonumbers = (int x, int y){
+    var sum = x + y;
+    return sum;
+  };
+  Function divideByFour = (int num) => num ~/ 4;//dividing by 4
+}
+
+main(List<String> arguments){
+  var lambdaShow = LambdaCode();
+  print(lambdaShow.addingTwonumbers(12, 47));
+  print(lambdaShow.divideByFour(56));
+}
+
+
+//code 6.5
+//returning a function
+Function DividingByFour(){
+  Function LetUsDivide = (int x) => x ~/ 4;
+  return LetUsDivide;
+}
+
+main(List<String> arguments){
+  var result = DividingByFour();
+  print(result(56));
+}
+
+
+//code 6.6
+//anonymous_adding_cart.dart
+class Cart{
+
+  Function addingTwoItems = (int item1, int item2){
+
+    var sum = item1 + item2;
+    return sum;
+
+  };
+
+  Function ourReturnPolicy = (String messageToCustomer) { return messageToCustomer; };
+
+  var returnUpdateCustomer = (String updateCustomer) => updateCustomer;
+
+}
+
+import 'anonymous_adding_cart.dart'; // importing a class stored in a Dart file
+
+main(List<String> arguments){
+
+  List tasks = new List();
+
+  tasks.add((String item) => item);  // this is a List method
+  tasks.add( (item) {
+    return item;
+  } );
+  
+  print(tasks);
+
+  tasks.add("John");
+  tasks.add("Smith");
+
+  tasks.forEach((item){//  We iterate through the lists
+    print("${tasks.indexOf(item)} : $item");
+  });
+
+  var cart = Cart();
+  print("Your total price is:");
+  print(cart.addingTwoItems(120, 458));
+  print(cart.ourReturnPolicy("Please read our return policy"));
+  print(cart.returnUpdateCustomer("Your item has been shipped."));
+
+  var testStringAnonymous = (String stringAnonymous) => stringAnonymous;
+
+  print(testStringAnonymous("I am anonymous"));
+
+  var list = ["John Smith", "The Last Man Standing", "Action Movie"];
+
+  list.forEach((item){
+    print("${list.indexOf(item)} : $item");
+  });
+
+}
+
+
+//code 6.7
+//a closure can modify the parent scope
+String message = "Any Parent String";
+Function overridingParentScope = (){
+  String message = "Overriding the parent scope";
+  print(message);
+};
+
+main(List<String> arguments){
+  print(message);
+  overridingParentScope();
+}
+
+
+
+//code 6.8
+//declaring an anonymous function without any parameter
+Function show = (){
+  String pathToImage = "This is an old path.";
+  Function gettingImage(){
+    String path = "This is a new path to image.";
+    print(path);
+  }
+  return gettingImage;
+};
+
+main(List<String> arguments){
+  var showing = show();
+  showing();
+}
+
+
+//code 6.9
+//Lambda is an anonymous function
+class AboutLambdas{
+  //first way of expressing Lambda or anonymous function
+  Function addingNumbers = (int a, int b){
+    var sum = a + b;
+     
+    return sum;
+  };
+  Function multiplyWithEight = (int num){
+    return num * 8;
+  };
+
+  //second way of expressing Lambda by Fat Arrow
+  Function showName = (String name) => name;
+
+  //higher order functions pass function as parameter
+  int higherOrderFunction(Function myFunction){
+    int a = 10;
+    int b = 20;
+    print(myFunction(a, b));
+  }
+
+  //returning a function
+  Function returningAFunction(){
+    Function showAge = (int age) => age;
+    return showAge;
+  }
+
+  //a closure can modify the parent scope
+  String anyString = "Any Parent String";
+  Function overridingParentScope = (){
+    String message = "Overriding the parent scope";
+    print(message);
+  };
+
+  Function show = (){
+    String pathToImage = "This is an old path."; // the anonymous function will return this originally
+    Function gettingImage(){ // anonymous function returns a function
+      String path = "This is a new path to image.";
+      print(path);
+    }
+    return gettingImage;
+  };
+}
+
+main(List<String> arguments){
+  var add = AboutLambdas();
+  var addition = add.addingNumbers(5, 10);
+  print(addition);
+  var mul = AboutLambdas();
+  var result = mul.multiplyWithEight(4);
+  print(result);
+  var name = AboutLambdas();
+  var myName = name.showName("Sanjib");
+  print(myName);
+  var higher = AboutLambdas();
+  var higherOrder = higher.higherOrderFunction(add.addingNumbers);
+  higherOrder;
+  var showAge = AboutLambdas();
+  var showingAge = showAge.returningAFunction();
+  print(showingAge(25));
+  var sayMessage = AboutLambdas();
+  sayMessage.overridingParentScope();
+  var image = AboutLambdas();
+  var imagePath = image.show();
+  imagePath();
+}
+
+
+
+

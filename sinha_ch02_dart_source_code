@@ -1,0 +1,172 @@
+//code 2.1
+
+main(List<String> arguments) {
+  bool firstButtonTouch = true;
+  bool secondButtonTouch = false;
+  bool thirdButtonTouch = true;
+  bool fourthButtonTouch = false;
+
+  if(firstButtonTouch) print("The giant starts running.");
+  else print("To stop the giant please touch the second button.");
+
+  if(secondButtonTouch) print("The giant stops.");
+  else print("You have not touched the second button.");
+
+  print("Touch any button to start the game.");
+
+  if(thirdButtonTouch) print("The giant goes to sleep.");
+  else print("You have not touched any button.");
+
+  if(fourthButtonTouch) print("The giant wakes up.");
+  else print("You have not touched any button.");
+}
+
+
+//code 2.2
+main(List<String> arguments) {
+  bool firstButtonTouch = true;
+  var firstButtonUntouch;
+  bool secondButtonTouch = false;
+  bool thirdButtonTouch = true;
+  bool fourthButtonTouch = false;
+  firstButtonUntouch ??= firstButtonTouch;
+  firstButtonUntouch = false;
+
+  if (firstButtonUntouch == false || firstButtonTouch == true) print("The giant is sleeping.");
+  else print("You need to wake up the giant. Touch the first button.");
+
+  if(firstButtonTouch == true && firstButtonUntouch == false) print("The giant starts running.");
+  print("To stop the giant please touch the second button.");
+
+  if((secondButtonTouch == true && thirdButtonTouch == true) || fourthButtonTouch == false) print("The giant stops.");
+  else print("You have not touched the second button.");
+
+  print("Touch any button to start the game.");
+
+  if(thirdButtonTouch) print("The giant goes to sleep.");
+  else print("You have not touched any button.");
+
+  if(fourthButtonTouch) print("The giant wakes up.");
+  else print("You have not touched any button.");
+}
+
+
+
+//code 2.3
+main(List<String> arguments) {
+  bool firstButtonTouch = true;
+  var firstButtonUntouch;
+  bool secondButtonTouch = false;
+  bool thirdButtonTouch = true;
+  bool fourthButtonTouch = false;
+  firstButtonUntouch ??= firstButtonTouch;
+  firstButtonUntouch = false;
+
+  if (firstButtonUntouch == false || firstButtonTouch == true) print("The giant is sleeping.");
+  else if (thirdButtonTouch) print("You need to wake up the giant. Touch the first button.");
+  else if(firstButtonTouch == true && firstButtonUntouch == false) print("The giant starts running.");
+  else if (secondButtonTouch) print("To stop the giant please touch the second button.");
+  else if((secondButtonTouch == true && thirdButtonTouch == true) || fourthButtonTouch == false) print("The giant stops.");
+  else if (thirdButtonTouch) print("You have not touched the second button.");
+  else if (secondButtonTouch) print("Touch any button to start the game.");
+  else if(thirdButtonTouch) print("The giant goes to sleep.");
+  else if (firstButtonUntouch) print("You have not touched any button.");
+
+  if(fourthButtonTouch) print("The giant wakes up.");
+  else print("You have not touched any button.");
+}
+
+
+//code 2.4
+main(List<String> arguments) {
+  var proverb = StringBuffer('As Dark as a Dungeon.');
+
+  for(var x = 0; x <= 10; x++){
+    proverb.write("!");
+    print(proverb);
+  }
+}
+
+//code 2.5
+main(List<String> arguments) {
+  Set mySet = {1, 2, 3};
+  var myProducts = {
+    1 : 'TV',
+    2 : 'Refrigerator',
+    3 : mySet.lookup(2),
+    4 : 'Tablet',
+    5 : 'Computer'
+  };
+  var userCollection = {"name": "John Smith", 'Email': 'john@sanjib.site'};
+
+  myProducts.forEach((x, y) => print("${x} : ${y}"));
+  userCollection.forEach((k,v) => print('${k}: ${v}'));
+}
+
+//code 2.6
+main(List<String> arguments) {
+  var myCollection = [1, 2, 3, 4];
+
+  for(var x in myCollection){
+    print("${x}");
+  }
+}
+
+
+//code 2.7
+main(List<String> arguments) {
+  var num = 5;
+  var factorial = 1;
+  print("The value of the variable 'num' is decreasing this way:");
+
+  while(num >=1) {
+    factorial = factorial * num;
+    num--;
+    print("'=>' ${num}");
+  }
+  print("The factorial  is ${factorial}");
+}
+
+
+//code 2.9
+main(List<String> arguments) {
+  var num = 5;
+  var factorial = 1;
+
+  do {
+    factorial = factorial * num;
+    num--;
+    print("The value of the variable 'num' is decreasing to : ${num}");
+    print("The factorial  is ${factorial}");
+  }
+  while(num >=1);
+}
+
+
+//code 2.11
+main(List<String> arguments) {
+  //that could be the input value that would take inputs from users
+  var startingTime = 5;
+  switch (startingTime) {
+    case 5:
+      print("Printer Ready");
+      break;
+    case 6:
+      print("Start printing");
+      break;
+    case 7:
+      print("Stop for a second");
+      break;
+    case 8:
+      print("Loading a tray and roll the paper.");
+      break;
+    case 9:
+      print("Printer Ready, start printing.");
+      break;
+    default:
+      print("Default ${startingTime}");
+  }
+}
+
+
+

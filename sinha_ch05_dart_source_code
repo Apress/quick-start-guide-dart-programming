@@ -1,0 +1,312 @@
+//code 5.1
+//we cannot instantiate any abstract class
+abstract class volume{
+  //we can declare instance variable
+  int age;
+  void increase();
+  void decrease();
+  // a normal function
+  void anyNormalFunction(int age){
+    print("This is a normal function to know the $age.");
+  }
+}
+
+class soundSystem extends volume{
+  void increase(){
+    print("Sound is up.");
+  }
+  void decrease(){
+    print("Sound is down.");
+  }
+  //it is optional to override the normal function
+  void anyNormalFunction(int age){
+    print("This is a normal function to know how old the sound system is: $age.");
+  }
+}
+
+main(List<String> arguments){
+  var newSystem = soundSystem();
+  newSystem.increase();
+  newSystem.decrease();
+  newSystem.anyNormalFunction(10);
+}
+
+
+
+//code 5.2
+abstract class Mammal {
+  void run();
+  void walk();
+  void sound(){
+    print("Mammals make sound");
+  }
+}
+
+class Human implements Mammal {
+
+  void run(){
+    print("I am running.");
+  }
+  void walk(){
+    print("I am walking");
+  }
+  void sound(){
+  }
+}
+
+main(List<String> arguments){
+  var John = Human();
+  print("John says: ");
+  John.run();
+  print("John says: ");
+  John.walk();
+  print("John makes no sound.");
+}
+
+
+
+//code 5.3
+abstract class Mammal {
+  void run();
+  void walk();
+  void sound(){
+    print("Mammals make sound");
+  }
+}
+
+class Human implements Mammal {
+
+  void run(){
+    print("I am running.");
+  }
+  void walk(){
+    print("I am walking");
+  }
+  void sound(){
+    print("Humans make sound");
+  }
+}
+
+main(List<String> arguments){
+  var John = Human();
+  print("John says: ");
+  John.run();
+  print("John says: ");
+  John.walk();
+  print("John makes sound.");
+  John.sound();
+}
+
+
+//code 5.4
+// interface in Dart is a class, but we don't extend, 
+// we implement it 
+class Vehicle{
+  void steerTheVehicle() {
+    print("The vehicle is moving.");
+  }
+}
+
+class Engine{
+  //in the interface, but only visible when used publicly
+  final _name; // final means single assignment and it must have an initializer as I use here
+  //not in the interface, since it is a constructor
+  Engine(this._name);
+  String lessOilConsumption(){
+    return "It consumes less oil.";
+  }
+}
+
+class Car implements Vehicle, Engine{
+  get _name => "";
+  void carName(String name) => print("$name");
+
+  void steerTheVehicle() {
+    print("The car is moving.");
+  }
+
+  String lessOilConsumption(){
+    print("This model of car consumes less oil.");
+  }
+
+  void ridingExperience(Engine engine) => print("This car gives good ride, because the engine is ${engine._name}");
+}
+
+main(List<String> arguments){
+  var car = Car();
+  car.carName("Opel");
+  car.steerTheVehicle();
+  car.lessOilConsumption();
+  car.ridingExperience(Engine("Suzuki"));
+}
+
+
+//code 5.5
+class OrderDetails {
+  void UpdateCustomers(){
+  }
+  void TakeOrder(){
+  }
+}
+
+class ItemDetails implements OrderDetails{
+  void UpdateCustomers(){
+    //implementing interface members
+    print("Updating customers.");
+  }
+  void TakeOrder(){
+    //implementing interface members
+    print("Taking orders from customers.");
+  }
+}
+
+main(List<String> arguments){
+  var book = ItemDetails();
+  book.TakeOrder();
+  book.UpdateCustomers();
+}
+
+
+//code 5.6
+class OrderDetails {
+  void UpdateCustomers(){
+  }
+  void TakeOrder(){
+  }
+}
+
+class ItemDetails implements OrderDetails{
+  void UpdateCustomers(){
+    //implementing interface members
+    print("Updating customers.");
+  }
+  /*
+  void TakeOrder(){
+    //implementing interface members
+    print("Taking orders from customers.");
+  }
+  */
+}
+
+main(List<String> arguments){
+  var book = ItemDetails();
+  //book.TakeOrder();
+  book.UpdateCustomers();
+}
+
+
+//code 5.7
+class OrderDetails {
+  //int age;
+  /*
+  void anyNormalFunction(int age){
+    print("This is a normal function to know the $age.");
+  }
+  */
+  void UpdateCustomers(){
+  }
+  void TakeOrder(){
+  }
+}
+
+abstract class CustomerDetails {
+  void Customers(){
+  }
+}
+
+class ItemDetails extends CustomerDetails implements OrderDetails {
+
+  void anyNormalFunction(int age){
+    print("This is a normal function to know the age: $age.");
+  }
+  void UpdateCustomers(){
+    //implementing interface members
+    print("Updating customers.");
+  }
+
+  void TakeOrder(){
+  }
+
+  void Customers(){
+  }
+
+}
+
+main(List<String> arguments){
+  var book = ItemDetails();
+  //book.TakeOrder();
+  book.UpdateCustomers();
+  book.anyNormalFunction(12);
+}
+
+
+//code 5.8
+class OrderDetails {
+  int age;
+  void anyNormalFunction(int age){
+    print("This is a normal function to know the $age.");
+  }
+
+  void UpdateCustomers(){
+  }
+  void TakeOrder(){
+  }
+}
+
+abstract class CustomerDetails {
+  void Customers(){
+  }
+}
+
+class ItemDetails extends CustomerDetails implements OrderDetails {
+//trying to implement interface normal functions
+  void anyNormalFunction(int age){
+    print("This is a normal function to know the age: $age.");
+  }
+  void UpdateCustomers(){
+    //implementing interface members
+    print("Updating customers.");
+  }
+
+  void TakeOrder(){
+  }
+
+  void Customers(){
+  }
+
+}
+
+main(List<String> arguments){
+  var book = ItemDetails();
+  //book.TakeOrder();
+  book.UpdateCustomers();
+  book.anyNormalFunction(12);
+}
+
+
+//code 5.9
+// static variables and methods consume less memory
+// they are lazily initialized
+class Circle{
+  static const pi = 3.14;
+
+  static Function drawACircle(){
+    //from static method you cannot call a normal function
+    print(pi);
+  }
+
+  Function aNonStaticFunction(){
+    //from a normal function you can call a static meethod
+    Circle.drawACircle();
+    print("This is normal function.");
+  }
+}
+
+main(List<String> arguments){
+  var circle = Circle();
+  circle.aNonStaticFunction();
+  Circle.drawACircle();
+}
+
+
+

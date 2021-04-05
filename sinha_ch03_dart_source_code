@@ -1,0 +1,424 @@
+//code 3.1
+main(List<String> arguments) {
+  isTrue();
+  isFalse();
+}
+bool isTrue(){
+  print("It's true.");
+}
+bool isFalse(){
+  print("It's false.");
+}
+
+
+//code 3.2
+main(List<String> arguments) {
+  isTrue();
+  isFalse();
+}
+isTrue(){
+  print("It's true.");
+}
+isFalse(){
+  print("It's false.");
+}
+
+
+
+//code 3.3
+main(List<String> arguments) {
+  isTrue(1);
+  isFalse(0);
+}
+isTrue(int numTrue){
+  print("It's ${numTrue}. So it's true.");
+}
+isFalse(int numFalse){
+  print("It's ${numFalse}, so it's false.");
+}
+
+
+//code 3.4
+main(List<String> arguments) {
+  myName();
+}
+String myName(){
+  print("My name is John");
+  myAge(12);
+}
+int myAge(int age){
+  print("My age is ${age}");
+}
+
+
+//code 3.5
+main(List<String> arguments) {
+  var newCar = new Car();
+  newCar.carName = "Red Angel";
+  newCar.carModel = 256;
+  if(newCar.isTurnedOn(true)){
+    print("${newCar.carName} starts. It has model number ${newCar.carModel}");
+  } else print("${newCar.carName} stops. It has model number ${newCar.carModel}");
+}
+
+class Car {
+  int carModel = 123;
+  String carName = "Blue Angel";
+
+  bool isTurnedOn(bool){
+    return false;
+  }
+}
+
+
+//code 3.6
+main(List<String> arguments) {
+  var newCar = new Car();
+  newCar.carName = "Red Angel";
+  newCar.carModel = 256;
+  if(newCar.isTurnedOn(true)){
+    print("${newCar.carName} starts. It has model number ${newCar.carModel}");
+  } else print("${newCar.carName} stops. It has model number ${newCar.carModel}");
+}
+class Car {
+  int carModel = 123;
+  String carName = "Blue Angel";
+  bool isTurnedOn(bool){
+    return true;
+  }
+}
+
+
+//code 3.7
+class Bear {
+  int numberOfFish;
+
+  int eatFish(int numberOfFish){
+    return numberOfFish;
+  }
+}
+
+main(List<String> arguments){
+  var fatherBear = new Bear();
+  print("Father bear eats ${fatherBear.eatFish(6)} number of fish.");
+}
+
+
+//code 3.8
+class Bear {
+  int numberOfFish;
+  int hourOfSleep;
+  int weightGain;
+
+  int eatFish(int numberOfFish){
+    return numberOfFish;
+  }
+
+  int sleepAfterEatingFish(int hourOfSleep){
+    return hourOfSleep;
+  }
+
+  int weightGaining(int weightGain){
+    weightGain = numberOfFish * hourOfSleep;
+    return weightGain;
+  }
+}
+
+main(List<String> arguments){
+  var fatherBear = new Bear();
+  fatherBear.numberOfFish = 6;
+  fatherBear.hourOfSleep = 10;
+  fatherBear.weightGain = fatherBear.numberOfFish * fatherBear.hourOfSleep;
+  print("Father bear eats ${fatherBear.eatFish(fatherBear.numberOfFish)} number of fish. And he sleeps for ${fatherBear.sleepAfterEatingFish(fatherBear.hourOfSleep)} hours.");
+  print("Father bear has gained ${fatherBear.weightGaining(fatherBear.weightGain)} pounds of weight.");
+}
+
+
+class Bear {
+  int numberOfFish;
+  int hourOfSleep;
+  int weightGain;
+  //changing the styles of the methods completely
+  int eatFish(int numberOfFish) => numberOfFish;
+  int sleepAfterEatingFish(int hourOfSleep) => hourOfSleep;
+  int weightGaining(int weightGain) => weightGain = numberOfFish * hourOfSleep;
+}
+
+main(List<String> arguments){
+  var fatherBear = Bear(); //omitted the ‘new’ word
+  fatherBear.numberOfFish = 7;
+  fatherBear.hourOfSleep = 20;
+  fatherBear.weightGain = fatherBear.numberOfFish * fatherBear.hourOfSleep;
+  print("Father bear eats ${fatherBear.eatFish(fatherBear.numberOfFish)} fishes. And he sleeps for ${fatherBear.sleepAfterEatingFish(fatherBear.hourOfSleep)} hours.");
+  print("Father bear has gained ${fatherBear.weightGaining(fatherBear.weightGain)} pounds of weight.");
+}
+
+
+//code 3.10
+class Bear {
+  int numberOfFish;
+  int hourOfSleep;
+  int weightGain;
+
+  Bear(this.numberOfFish, this.hourOfSleep);//  Constructor
+
+  int eatFish(int numberOfFish) => numberOfFish;
+  int sleepAfterEatingFish(int hourOfSleep) => hourOfSleep;
+  int weightGaining(int weightGain) => weightGain = numberOfFish * hourOfSleep;
+}
+
+main(List<String> arguments){
+  var fatherBear = Bear(6, 10);
+  fatherBear.weightGain = fatherBear.numberOfFish * fatherBear.hourOfSleep;
+  print("Father bear eats ${fatherBear.eatFish(fatherBear.numberOfFish)} fishes. And he sleeps for ${fatherBear.sleepAfterEatingFish(fatherBear.hourOfSleep)} hours.");
+  print("Father bear has gained ${fatherBear.weightGaining(fatherBear.weightGain)} pounds of weight.");
+}
+Creating constructor is extremely easy. Watch this line:
+Bear(this.numberOfFish, this.hourOfSleep);
+
+
+//code 3.11
+class Bear {
+  int numberOfFish;
+  int hourOfSleep;
+  int weightGain;
+
+  Bear(int numOfFish, int hourOfSleep){// constructor
+    this.numberOfFish = numOfFish;//using this keyword to point out the current class object
+    this.hourOfSleep = hourOfSleep;
+  }
+  //Bear(this.numberOfFish, this.hourOfSleep);
+
+  int eatFish(int numberOfFish) => numberOfFish;
+  int sleepAfterEatingFish(int hourOfSleep) => hourOfSleep;
+  int weightGaining(int weightGain) => weightGain = numberOfFish * hourOfSleep;
+}
+
+main(List<String> arguments){
+  var fatherBear = Bear(6, 10);
+  fatherBear.weightGain = fatherBear.numberOfFish * fatherBear.hourOfSleep;
+  print("Father bear eats ${fatherBear.eatFish(fatherBear.numberOfFish)} fishes. And he sleeps for ${fatherBear.sleepAfterEatingFish(fatherBear.hourOfSleep)} hours.");
+  print("Father bear has gained ${fatherBear.weightGaining(fatherBear.weightGain)} pounds of weight.");
+}
+
+
+
+//code 3.12
+main(List<String> arguments){
+  var fatherBear = Bear(6, 10);
+  fatherBear.weightGain = fatherBear.numberOfFish * fatherBear.hourOfSleep;
+  print("Father bear eats ${fatherBear.eatFish(fatherBear.numberOfFish)} fishes. And he sleeps for ${fatherBear.sleepAfterEatingFish(fatherBear.hourOfSleep)} hours.");
+  print("Father bear has gained ${fatherBear.weightGaining(fatherBear.weightGain)} pounds of weight.");
+  print("The type of the object : ${fatherBear.weightGain.runtimeType}");
+  String weightGained = fatherBear.weightGain.toString();
+  print("The type of the same object has changed to : ${weightGained.runtimeType}");
+}
+
+
+//code 3.13
+class CheckHTTPS {
+  String urlCheck;
+  CheckHTTPS(this.urlCheck);
+  bool checkURL(String urlCheck){
+    if(this.urlCheck.contains("https")){
+      return true;
+    } else return false;
+  }
+}
+
+main(List<String> arguments){
+  var newURL = CheckHTTPS('http://sanjib.site');
+  print("The URL ${newURL.urlCheck} is not secured");
+}
+
+
+//code 3.14
+class MyClass {
+  String myVariable; //property or instance variable, initially null
+  MyClass(this.myVariable); //constructor
+
+  String myMethod(){ //method declaration
+    return "This is my method and this is ${myVariable}"; //returning value
+  }
+}
+
+main(List<String> arguments){
+  var myObject = MyClass("My String"); //creating new instance of class MyClass
+  print("${myObject.myMethod()}"); //printing the value
+}
+
+
+//code 3.15
+main(List<String> arguments){
+  print(showConnection());
+}
+
+//optional positional parameter
+String myConnection(String dbName, String hostname, String username, [String optionalPassword]){
+  if(optionalPassword == null){
+    return "${dbName}, ${hostname}, $username";
+  } else return "${dbName}, ${hostname}, $username, $optionalPassword";
+}
+
+void showConnection(){
+  myConnection("MySQL", "localhost", "root", "*******");
+}
+
+
+//code 3.16
+main(List<String> arguments){
+  var myConnect = myConnection("MySQL", "localhost", "root", "*******");
+  print(myConnect);
+}
+
+//optional positional parameter
+String myConnection(String dbName, String hostname, String username, [String optionalPassword]){
+  if(optionalPassword == null){
+    return "${dbName}, ${hostname}, $username";
+  } else return "${dbName}, ${hostname}, $username, $optionalPassword";
+}
+
+
+//code 3.17
+main(List<String> arguments){
+  var myConnect = myConnection("MySQL", "localhost", "root");
+  print(myConnect);
+}
+
+//optional positional parameter
+String myConnection(String dbName, String hostname, String username, [String optionalPassword]){
+  if(optionalPassword == null){
+    return "${dbName}, ${hostname}, $username";
+  } else return "${dbName}, ${hostname}, $username, $optionalPassword";
+}
+
+
+//code 3.18
+main(List<String> arguments){
+  var myConnect = myConnection("MySQL", "localhost", "root");
+  print(myConnect);
+}
+//optional positional parameter is no more
+String myConnection(String dbName, String hostname, String username, String optionalPassword){
+  if(optionalPassword == null){
+    return "${dbName}, ${hostname}, $username";
+  } else return "${dbName}, ${hostname}, $username, $optionalPassword";
+}
+
+
+
+//code 3.19
+var outsideVariable = "I am an outsider.";
+
+main(List<String> arguments){
+  //we can access the outside variable
+  print(outsideVariable);
+  // we cannot access the insider variable, it gives us error
+  //print(insiderVariable);
+  // it is an insider function
+  String insiderFunction(){
+    // I can access the outside variable, no problem
+    print("This is from the insider function.");
+    print(outsideVariable);
+    String insiderVariable = "I am an insider";
+    print(insiderVariable); // it's okay to access this insider
+  }
+  insiderFunction();
+}
+
+
+//code 3.20
+var outsideVariable = "I am an outsider.";
+main(List<String> arguments){
+  //we can access the outside variable
+  print(outsideVariable);
+  // we cannot access the insider variable, it gives us error
+  print(insiderVariable);
+  // it is an insider function
+  String insiderFunction(){
+    // I can access the outisde variable, no problem
+    print("This is from the insider function.");
+    print(outsideVariable);
+    String insiderVariable = "I am an insider";
+    print(insiderVariable); // it's okay to access this insider
+  }
+  insiderFunction();
+}
+
+
+//code 3.21
+class myClass {
+    String name;
+    String get getName => name;
+    set setName(String aValue) => name = aValue;
+}
+
+main(List<String> arguments){
+  var myObject = myClass();
+  myObject.setName = "Sanjib";
+  print(myObject.getName);
+}
+
+
+//code 3.22
+//default parameters
+String defaultParameters(String name, String address, {int age = 10}){
+  return "$name and $address and age $age";
+}
+
+//optional parameters
+String optionalParameters(String name, String address, [int age] ){
+  return "$name and $address and $age";
+}
+
+void main(){
+  print(defaultParameters("John", "Jericho"));
+  print(optionalParameters("John", "Form Chikago"));
+  // overriding the default age
+  print(defaultParameters("JOhn", "Jericho", age : 20));
+}
+
+
+//code 3.23
+//named parameter
+int findTheVolume(int length, {int height, int breadth}){
+  return length * height * breadth;
+}
+
+void main(){
+  //sequence does not matter
+  var  result1 = findTheVolume(10, height: 20, breadth: 30);
+  var  result2 = findTheVolume(10, breadth: 30, height: 10);
+  print(result1);
+  print(result2);
+}
+
+
+//code 3.24
+class Bear {
+  //reference variable
+  int collarID;
+  //default and parameterized constructor
+  Bear(this.collarID);
+  //first named constructor
+  Bear.firstNamedConstructor(this.collarID);
+  //second named constructor
+  Bear.secondNamedConstructor(this.collarID);
+  void trackingBear() {	
+    String color; // local varia   print("Tracking the bear with collar ID ${collarID}");
+  }
+}
+
+main(List<String> arguments){
+  // bear1 is reference variable
+  // Bear() is object// It should be class no object I suppose
+  var bear1 = Bear(1);
+  bear1.trackingBear();
+  var bear2 = Bear.firstNamedConstructor(2);
+  bear2.trackingBear();
+  var bear3 = Bear.secondNamedConstructor(3);
+  bear3.trackingBear();
+}
+
+
+

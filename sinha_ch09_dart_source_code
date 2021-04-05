@@ -1,0 +1,156 @@
+//code 9.1
+//lib/ RelationalOperators.dart
+class TrueOrFalse{
+  int firstNum = 40;
+  int secondNum = 40;
+  int thirdNum = 74;
+  int fourthNum = 56;
+  void BetweenTrueOrFalse(){
+    if (firstNum == secondNum || thirdNum == fourthNum){
+      print("If choice between 'true' or 'false', in this case the 'TRUE' gets the precedence. $firstNum is equal to $secondNum");
+    } else print("Nothing happens.");
+  }
+  void BetweenTrueAndFalse(){
+    if (firstNum == secondNum && thirdNum == fourthNum){
+      print("It will go to else clause");
+      } else print("If choice between 'true' and 'false', in this case the 'FALSE' gets the precedence. $thirdNum is not equal to $fourthNum");
+  }
+}
+Next, we create a file 'PowProject.dart' inside the 'lib' folder. 
+//code 9.2
+//lib/PowProject.dart
+class PowProject{
+  void MultiplyByAGivenNumber(int fixedNumber, int givenNumber){
+    int result = fixedNumber * givenNumber;
+    print(result);
+  }
+  void pow(int x, int y){
+    int addition = x + y;
+    print(addition);
+  }
+}
+
+
+//code 9.2
+//lib/PowProject.dart
+class PowProject{
+  void MultiplyByAGivenNumber(int fixedNumber, int givenNumber){
+    int result = fixedNumber * givenNumber;
+    print(result);
+  }
+  void pow(int x, int y){
+    int addition = x + y;
+    print(addition);
+  }
+}
+
+
+//code 9.3
+import 'dart:math' as math;
+//now we can use the ‘math’ as keyword
+import 'package:IdeaProjects/PowProject.dart';
+import 'package:IdeaProjects/RelationalOperators.dart' as Relation;
+main(List<String> arguments){
+  print("Printing 2 to the power 5 using Dart's built-in 'dart:math' library.");
+  var int = math.pow(2, 5);
+  print(int);
+  print("Now we are going to use another 'pow()' function from our own library.");
+  var anotherPowObject = PowProject();
+  anotherPowObject.MultiplyByAGivenNumber(4, 3);
+  anotherPowObject.pow(2, 12);
+  print("Now we are going to use another library to test the relational operators.");
+  var trueOrFalse = Relation.TrueOrFalse();
+  trueOrFalse.BetweenTrueOrFalse();
+  trueOrFalse.BetweenTrueAndFalse();
+}
+
+
+//code 9.4
+
+import 'dart:io';
+import 'dart:async';
+
+Future main() async {
+  var myServer = await HttpServer.bind(
+    '127.0.0.1',
+    8080,
+  );
+  print("The server is alive on the above mentioned port and it's listening "
+      "on ${myServer.port}/");
+
+  myServer.listen((HttpRequest myRequest){
+    myRequest.response
+      ..write("Bonjour mademoiselle, comment appelez vous?")
+      ..close();
+  });
+}
+
+
+//code 9.5
+dart main.dart
+
+
+/code 9.6
+
+/home/ss/flutter/bin/cache/dart-sdk/bin/dart --enable-vm-service:40505 /home/ss/IdeaProjects/bin/main.dart
+Observatory listening on http://127.0.0.1:40505/
+
+The server is alive on the above mentioned port and it's listening on 8080/
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+
+
+//code 9.7
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>A Dart WEB Example on Local Server</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+</head>
+
+<body>
+<h1>A Dart WEB Example on Local Server</h1>
+<a href="https://sanjibsinha.fun" about="It's my unofficial site" onclick="Click Me!">
+    Here is my unofficial site!
+</a>
+</body>
+</html>
+
+//code 9.8
+
+import 'dart:io';
+import 'dart:async';
+
+final File myFile = File("index.html");// we have used dart input/ouput library File() method
+	
+Future main() async {
+  var myServer = await HttpServer.bind(
+    '127.0.0.1',	
+    8080,
+  );
+  print("The server is alive on the above mentioned port and it's listening "
+      "on ${myServer.port}/");
+
+// we are going to use the ‘await’ from dart ‘async’ library
+  await for (HttpRequest myRequest in myServer) {
+
+    if(await myFile.exists()){
+      print("We're going to serve ${myFile.path}");
+      myRequest.response.headers.contentType = ContentType.html;
+
+      await myFile.openRead().pipe(myRequest.response);
+
+    }
+
+  }
+
+}
+
+
+

@@ -1,0 +1,362 @@
+//code 4.1
+class Animal {
+  String name = "Animal";
+  Animal(){
+    print("I am Animal class constructor.");
+  }
+
+  Animal.namedConstructor(){
+    print("This is parent animal named constructor.");
+  }
+
+  void showName(){
+    print(this.name);
+  }
+
+  void eat(){
+    print("Animals eat everything depending on what type it is.");
+  }
+}
+
+class Cat extends Animal {
+  //overriding parent constructor
+  //although constructors are not inherited
+  Cat() : super(){
+    print("I am child cat class overriding super Animal class.");
+  }
+
+  Cat.namedCatConstructor() : super.namedConstructor(){
+    print("The child cat named constructor overrides the parent animal named constructor.");
+  }
+
+  @override // method overriding
+  void showName(){
+    print("Hi from cat.");
+  }
+
+  @override
+  void eat(){
+    super.eat();
+    print("Cat doesn't eat vegetables..");
+  }
+}
+
+main(List<String> arguments){
+  var cat = Cat();
+  cat.name = "Meaow";
+  cat.showName();
+  cat.eat();
+  var anotherCat = Cat.namedCatConstructor();
+}
+
+
+//code 4.2
+class Animal {
+  String name = "Animal";
+  Animal(){
+    print("I am Animal class constructor.");
+  }
+  Animal.namedConstructor(){
+    print("This is parent animal named constructor.");
+  }
+  void showName(){
+    print(this.name);
+    print("Hi from ${this.name}");
+  }
+  void eat(){
+    print("Animals eat everything depending on what type it is.");
+  }
+}
+
+class Cat extends Animal {
+  //overriding parent constructor
+  //although constructors are not inherited
+  Cat() : super(){
+    print("I am child cat class overriding super Animal class.");
+  }
+  Cat.namedCatConstructor() : super.namedConstructor(){
+    print("The child cat named constructor overrides the parent animal named constructor.");
+  }
+
+  @override
+  void showName(){
+    print("Hi from cat.");
+    print(this.name);
+  }
+
+  @override
+  void eat(){
+    super.eat();
+    print("Cat doesn't eat vegetables..");
+  }
+}
+
+main(List<String> arguments){
+  var animal = Animal();
+  animal.name = "Cow";
+  animal.showName();
+  var cat = Cat();
+  cat.name = "Meaow";
+  cat.showName();
+  cat.eat();
+  var anotherCat = Cat.namedCatConstructor();
+}
+
+
+//code 4.3
+class Animal {
+  String name = "Animal";
+  Animal(){
+    print("I am Animal class constructor.");
+  }
+  Animal.namedConstructor(){
+    print("This is parent animal named constructor.");
+  }
+  void showName(){
+    print(this.name);
+    print("Hi from ${this.name}");
+  }
+  void eat(){
+    print("Animals eat everything depending on what type it is.");
+  }
+}
+
+class Dog extends Animal {
+  //overriding parent constructor
+  //although constructors are not inherited
+  Dog() : super(){
+    print("I am child class dog overriding super Animal class.");
+  }
+  Dog.namedCatConstructor() : super.namedConstructor(){
+    print("The child dog named constructor overrides the parent animal named constructor.");
+  }
+  Dog.anotherNamedConstructor(){
+    print("This is parent Dog named constructor.");
+  }
+  @override
+  void showName(){
+    print("Hi from parent dog.");
+    print(this.name);
+  }
+  @override
+  void eat(){
+    super.eat();
+    print("Dog doesn't eat vegetables..");
+  }
+}
+
+class PuppyDog extends Dog {
+  //overriding parent constructor
+  //although constructors are not inherited
+  PuppyDog() : super(){
+    print("I am child class puppy dog overriding my immediate parent Dog class.");
+  }
+  PuppyDog.namedCatConstructor() : super.anotherNamedConstructor(){
+    print("The child puppy dog named constructor overrides the parent Dog another named constructor.");
+  }
+  @override
+  void showName(){
+    print("Hi from puppy dog.");
+    print(this.name);
+  }
+  @override
+  void eat(){
+    super.eat();
+    print("Puppy Dog eats milk only ...");
+  }
+}
+
+main(List<String> arguments){
+  var animal = Animal();
+  animal.name = "Cow";
+  animal.showName();
+  var dog = Dog();
+  dog.name = "Lucky";
+  dog.showName();
+  dog.eat();
+  var anotherDog = Dog.namedCatConstructor();
+  var puppy = PuppyDog();
+  puppy.name = "I am offspring of Lucky";
+  puppy.showName();
+  puppy.eat();
+  var anotherPuppy = PuppyDog.namedCatConstructor();
+}
+
+
+//code 4.4
+class Animal {
+  String name = "Animal";
+  Animal(){
+    print("I am Animal class constructor.");
+  }
+  Animal.namedConstructor(){
+    print("This is parent animal named constructor.");
+  }
+  void showName(){
+    print(this.name);
+  }
+  void eat(){
+    print("Animals eat everything depending on what type it is.");
+  }
+}
+
+class Dog {
+  void canRun(){
+    print("I can run.");
+  }
+}
+
+class Cat extends Animal with Dog {//reusing another class
+  //overriding parent constructor
+  //although constructors are not inherited
+  Cat() : super(){
+    print("I am child cat class overriding super Animal class.");
+  }
+  Cat.namedCatConstructor() : super.namedConstructor(){
+    print("The child cat named constructor overrides the parent animal named constructor.");
+  }
+  @override
+  void showName(){
+    print("Hi from cat.");
+  }
+  @override
+  void eat(){
+    super.eat();
+    print("Cat doesn't eat vegetables..");
+  }
+}
+
+main(List<String> arguments){
+  var cat = Cat();
+  cat.name = "Meaow";
+  cat.showName();
+  cat.eat();
+  var anotherCat = Cat.namedCatConstructor();
+  anotherCat.canRun();
+}
+
+
+//code 4.5
+class Animal {
+  String name = "Animal";
+  Animal(){
+    print("I am Animal class constructor.");
+  }
+  Animal.namedConstructor(){
+    print("This is parent animal named constructor.");
+  }
+  void showName(){
+    print(this.name);
+    print("Hi from ${this.name}");
+  }
+  void eat(){
+    print("Animals eat everything depending on what type it is.");
+  }
+}
+
+class Human {
+  void eating(){
+    print("Some people eat animals.");
+  }
+}
+
+class Dog extends Animal implements Human {
+  //overriding parent constructor
+  //although constructors are not inherited
+  Dog() : super(){
+    print("I am child class dog overriding super Animal class.");
+  }
+  Dog.namedCatConstructor() : super.namedConstructor(){
+    print("The child dog named constructor overrides the parent animal named constructor.");
+  }
+  Dog.anotherNamedConstructor(){
+    print("This is parent Dog named constructor.");
+  }
+  @override
+  void showName(){
+    print("Hi from parent dog.");
+    print(this.name);
+  }
+  @override
+  void eat(){
+    super.eat();
+    print("Dog doesn't eat vegetables..");
+  }
+
+  void eating(){
+    print("Some animals eat other animals.");
+  }
+}
+
+class PuppyDog extends Dog with Human {
+  //overriding parent constructor
+  //although constructors are not inherited
+  PuppyDog() : super(){
+    print("I am child class puppy dog overriding my immediate parent Dog class.");
+  }
+
+  PuppyDog.namedCatConstructor() : super.anotherNamedConstructor(){
+    print("The child puppy dog named constructor overrides the parent Dog another named constructor.");
+  }
+  @override
+  void showName(){
+    print("Hi from puppy dog.");
+    print(this.name);
+  }
+  @override
+  void eat(){
+    super.eat();
+    print("Puppy Dog eats milk only ...");
+  }
+  void eating(){
+    print("Some puppy dogs also eat meat of other animals.");
+  }
+}
+
+main(List<String> arguments){
+  var animal = Animal();
+  animal.name = "Cow";
+  animal.showName();
+  var dog = Dog();
+  dog.name = "Lucky";
+  dog.showName();
+  dog.eat();
+  var anotherDog = Dog.namedCatConstructor();
+  anotherDog.eating();
+  var puppy = PuppyDog();
+  puppy.name = "I am offspring of Lucky";
+  puppy.showName();
+  puppy.eat();
+  var anotherPuppy = PuppyDog.namedCatConstructor();
+  anotherPuppy.eating();
+}
+
+
+//code 4.6
+class Dog extends Animal implements Human {
+
+class PuppyDog extends Dog with Human {
+
+
+//code 4.7
+class Human {
+  void eating(){
+    print("Some people eat animals.");
+  }
+}
+
+
+//code 4.8
+void eating(){
+    print("Some animals eat other animals.");
+  }
+
+
+
+//code 4.9
+void eating(){
+    print("Some puppy dogs also eat meat of other animals.");
+  }
+
+
+

@@ -1,0 +1,385 @@
+//code 8.1
+class CallableClassWithoutArgument {
+  String outPut = "Callable class";
+  void call() {
+    print(outPut);
+  }
+}
+
+typedef void AnotherFunction(String anotherOutput);
+
+class CallableClassWithArgument {
+  call(String name) => "$name";
+}
+
+main(){
+  var withoutArgument = CallableClassWithoutArgument();
+  var withArgument = CallableClassWithArgument();
+  withoutArgument(); // it is equivalent to withoutArgument.call()
+  AnotherFunction anotherFunc = withArgument; //OK
+  AnotherFunction againAnotherFunction = withArgument.call; //OK
+  print(withArgument("John Smith")); //OK.
+  // withArgument(); //it'll give error
+  print(withArgument.call("Calling John Smith"));
+
+}
+
+
+//code 8.2
+//when dart class is callable like a function, use call() function
+class Person{
+  String name;
+  String call(String message, [name]){
+    return "This message: '$message', has been passed to the person $name.";
+  }
+}
+main(List<String> arguments){
+  var John = Person();
+  John.name = "John Smith";
+  String name = John.name;
+  String msgAndName = John("Hi John how are you?", name);
+  print(msgAndName);
+}
+
+
+//code 8.3
+main(List<String> arguments){
+  try{
+    int result = 10 ~/ 0;
+    print("The result is $result");
+  } on IntegerDivisionByZeroException{
+    print("We cannot divide by zero");
+  }
+  try{
+    int result = 10 ~/ 0;
+    print("The result is $result");
+  } catch(e){
+    print(e);
+  }
+  try{
+    int result = 10 ~/ 0;
+    print("The result is $result");
+  } catch(e){
+    print("The exception is : $e");
+  } finally{
+    print("This is finally and it always is executed.");
+  }
+}
+
+
+//code 8.4
+void main() {
+
+  // ON Clause is used when the exception is known
+  try {
+    var res = 4 ~/ 0;
+    print("The result: $res");
+  } on IntegerDivisionByZeroException {
+    print("You cannot divide by zero, the value is undefined");
+  }
+
+  // CATCH Clause is used when exception is unknown
+  try {
+    var res = 3 ~/ 0;
+    print("The result is $res");
+  } catch (e) {
+    print("The exception thrown is $e");
+  }
+
+  // STACK TRACE is used to know the steps of the events
+  // these events took place before the actual Exception was thrown
+  try {
+    int res = 10 ~/ 0;
+    print("The result is $res");
+  } catch (e, s) {
+    print("The exception: $e");
+    print("Stack trace is \n $s");
+  }
+
+  // FINALLY Clause is always Executed
+  // whether exception is thrown or not
+  try {
+    int res = 9 ~/ 0;
+    print("The result: $res");
+  } catch (e) {
+    print("The exception: $e");
+  } finally {
+    print("The finally clause is always executed.");
+  }
+
+  // we can make our Custom Exception by creating a class
+  try {
+    inputValue(-14);
+  } catch (e) {
+    print(e.customException());
+  } finally {
+    print("The finally clause is always executed");
+  }
+}
+
+class InputException implements Exception {
+  String customException() {
+    return "The input of negative number is not valid.";
+  }
+}
+
+void inputValue(int inputNumber) {
+  if (inputNumber < 0) {
+    var inputException = InputException();
+    print(inputException.customException());
+  }
+}
+
+
+//code 8.5
+import 'dart:async';
+
+// our all operations will use the main UI thread
+//since dart and flutter are single threaded we need to use Future, Async amd Await APIs
+
+void main(){
+  // the main UI thread starts after that the heavy operations will take place
+  print("The main UI thread is starting on here.");
+  print("Now it will take 10 seconds to display news headlines.");
+  displayNews();
+  print("The main UI thread ends.");
+  // this program remains incomplete, we don't get the result
+  // it is because the main UI thread is overlapping before 10 seconds
+  // therefore we need await and async APIs to block main UI thread for 10 seconds
+
+}
+
+// this is where our heavy operations are taking place
+Future<String> checkingNewsApp() {
+  // since we are returning a string value
+  // by delaying the main UI thread for 10 seconds
+  Future<String> delayingTenSeconds =  Future.delayed(Duration(seconds: 10), (){
+    return "The latest headlines are displayed here after 10 seconds.";
+  });
+  // after 10 seconds the news headlines will be displayed
+  return delayingTenSeconds;
+}
+
+void displayNews() {
+  // here we will primarily display the news headline
+  Future<String> displayingNewsHeadlines = checkingNewsApp();
+  // inside then we need an anonymous function like lambda or anonymous function
+  displayingNewsHeadlines.then((displayString){
+    // it will give the future object
+    print("Displaying news headlines here: $displayingNewsHeadlines");
+  });
+
+}
+
+
+//code 8.6
+import 'dart:async';
+
+// our all operations will use the main UI thread
+//since dart and flutter are single threaded we need to use Future, Async amd Await APIs
+
+void main(){
+  // the main UI thread starts after that the heavy operations will take place
+  print("The main UI thread is starting on here.");
+  print("Now it will take 10 seconds to display news headlines.");
+  displayNews();
+  print("The main UI thread ends.");
+  // this program remains incomplete, we don't get the result
+  // it is because the main UI thread is overlapping before 10 seconds
+  // therefore we need await and async APIs to block main UI thread for 10 seconds
+//we’re using Future
+
+}
+
+// this is where our heavy operations are taking place
+Future<String> checkingNewsApp() {
+  // since we are returning a string value
+  // by delaying the main UI thread for 10 seconds
+  Future<String> delayingTenSeconds =  Future.delayed(Duration(seconds: 10), (){
+    return "The latest headlines are displayed here after 10 seconds.";
+  });
+  // after 10 seconds the news headlines will be displayed
+  return delayingTenSeconds;
+}
+
+void displayNews() {
+  // here we will primarily display the news headline
+  Future<String> displayingNewsHeadlines = checkingNewsApp();
+  // inside then we need an anonymous function like lambda or anonymous function
+  displayingNewsHeadlines.then((displayString){    
+    print("Displaying news headlines here: $displayString");
+  });
+
+}
+
+
+//code 8.7
+import 'dart:async';
+
+void main(){
+  Future checkVersion() async {
+    var version = await checkVersion();
+    // Do something with version
+    try {
+      return version;
+    } catch (e) {
+      // React to inability to look up the version
+      return e;
+    }
+  }
+  print(checkVersion());
+}
+
+
+//code 8.8
+import 'dart:async';
+void main(){
+
+  print("The main UI thread is starting on here.");
+  print("Now it will take 3 seconds to display the version of Dart.");
+  checkVersion();
+  print("The main UI thread ends.");
+}
+
+Future<String> checkingVersion() {
+  // since we are returning a string value
+  // by delaying the main UI thread for 3 seconds
+  Future<String> delayingTenSeconds =  Future.delayed(Duration(seconds: 3), (){
+    return "The version 2.1 is displayed here after 3 seconds.";
+  });
+  // after 3 seconds the version will be displayed
+  return delayingTenSeconds;
+}
+
+void checkVersion() async {
+  String version = await checkingVersion();
+  // Do something with version
+  try {
+    print("Displaying version here: $version");
+  } catch (e) {
+    // React to inability to look up the version
+    return e;
+  }
+}
+
+
+//code 8.9
+import 'dart:async';
+
+// our all operations will use the main UI thread
+//since dart and flutter are single threaded we need to use Future, Async amd Await APIs
+//however, we have not used it here and got the future object instead of headlines
+
+void main(){
+  // the main UI thread starts after that the heavy operations will take place
+  print("The main UI thread is starting on here.");
+  print("Now it will take 10 seconds to display news headlines.");
+  displayNews();
+  print("The main UI thread ends.");
+  // this program remains incomplete, we don't get the result
+  // it is because the main UI thread is overlapping before 10 seconds
+  // therefore we need await and async APIs to block main UI thread for 10 seconds
+
+}
+
+// this is where our heavy operations are taking place
+Future<String> checkingNewsApp(){
+  // since we are returning a string value
+  // by delaying the main UI thread for 10 seconds
+  Future<String> delayingTenSeconds =  Future.delayed(Duration(seconds: 10), (){
+    return "The latest headlines are displayed here after 10 seconds.";
+  });
+  // after 10 seconds the news headlines will be displayed
+  return delayingTenSeconds;
+}
+
+void displayNews(){
+  // here we will primarily display the news headline
+  Future<String> displayingNewsHeadlines = checkingNewsApp();
+  print("Displaying news headlines here: $displayingNewsHeadlines");
+}
+
+
+//code 8.10
+import 'dart:async';
+
+// our all operations will use the main UI thread
+//since dart and flutter are single threaded we need to use Future, Async amd Await APIs
+
+void main(){
+  // the main UI thread starts after that the heavy operations will take place
+  print("The main UI thread is starting on here.");
+  print("Now it will take 10 seconds to display news headlines.");
+  displayNews();
+  print("The main UI thread ends.");
+  // this program remains incomplete, we don't get the result
+  // it is because the main UI thread is overlapping before 10 seconds
+  // therefore we need await and async APIs to block main UI thread for 10 seconds
+
+}
+
+// this is where our heavy operations are taking place
+Future<String> checkingNewsApp() {
+  // since we are returning a string value
+  // by delaying the main UI thread for 10 seconds
+  Future<String> delayingTenSeconds =  Future.delayed(Duration(seconds: 10), (){
+    return "The latest headlines are displayed here after 10 seconds.";
+  });
+  // after 10 seconds the news headlines will be displayed
+  return delayingTenSeconds;
+}
+
+void displayNews() async {
+  // here we will primarily display the news headline
+  String displayingNewsHeadlines = await checkingNewsApp();
+  print("Displaying news headlines here: $displayingNewsHeadlines");
+}
+
+
+//code 8.11
+import 'dart:async';
+
+void main(){
+  Future<int>.delayed(
+      Duration(seconds: 6),
+      () { return 200; },
+  ).then((value) { print(value); });
+  print('Waiting for a value for 6 seconds...');
+}
+
+
+
+//code 8.12
+import 'dart:async';
+
+void main(){
+  Future<int>.delayed(
+      Duration(seconds: 6),
+      () => throw 'We are throwing some error here.',
+  ).then((value) {
+    print(value);
+  });
+  print('Waiting for a value');
+}
+
+
+//code 8.13
+import 'dart:async';
+
+void main(){
+  Future<int>.delayed(
+      Duration(seconds: 6),
+      () { return 100; },
+  ).then((value) {
+    print(value);
+  }).catchError(
+      (err) {
+        print('Caught $err');
+      },
+    test: (err) => err.runtimeType == String,
+  ).whenComplete(() { print("Process completed."); });
+  print('The main UI thread is waiting');
+}
+
+
+

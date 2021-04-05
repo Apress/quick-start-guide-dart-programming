@@ -1,0 +1,310 @@
+//code 7.1
+int listFunction(){
+  List<int> nameOfTest = List(3);
+  nameOfTest[0] = 1;
+  nameOfTest[1] = 2;
+  nameOfTest[2] = 3;
+
+  //there are three methods to capture the list
+  //1. method
+  for(int element in nameOfTest){
+    print(element);
+  }
+  print("-----------");
+
+  //2. method
+  nameOfTest.forEach((v) => print('${v}'));
+  print("-----------");
+
+  //3. method
+  for(int i = 0; i < nameOfTest.length; i++){
+    print(nameOfTest[i]);
+  }
+}
+
+main(List<String> arguments){
+  listFunction();
+}
+
+
+//code 7.2
+Function growableList(){
+  //1. method
+  List<String> names = List();
+  names.add("Mana");
+  names.add("Babu");
+  names.add("Gopal");
+  names.add("Pota");
+
+  //there are two methods to capture the list
+  print("-----------");
+
+  //1. method
+  names.forEach((v) => print('${v}'));
+  print("-----------");
+
+  //2. method
+  for(int i = 0; i < names.length; i++){
+    print(names[i]);
+  }
+}
+
+main(List<String> arguments){
+  growableList();
+}
+
+
+//code 7.3
+main(){
+  var number1 = 1;
+  var number2 = 1;
+  while(number2 < 50){
+    print(number2);
+    number2 += number1;
+    number1 = number2 - number1;
+  }
+  print("Separator line: =============");
+  var fibonacciNumbers = [1, 2, 3, 5, 8, 13, 21, 34];
+  print(fibonacciNumbers.take(3).toList());
+  print("Separator line: =============");
+  print(fibonacciNumbers.skip(5).toList());
+  print("Separator line: =============");
+  print(fibonacciNumbers.skip(2).contains(5));
+  print("Separator line: =============");
+  print(fibonacciNumbers.take(3).skip(2).take(1).toList());
+  print("Separator line: =============");
+  var clonedFibonacciNumbers = List.from(fibonacciNumbers);
+  print("Cloned list: $clonedFibonacciNumbers");
+
+}
+
+
+//code 7.4
+main(){
+  var names = ["John", "Robert", "Smith", "Peter"];
+  names.forEach((name) => print(name)); 
+}
+
+
+//code 7.5
+main(){
+  var names = ["John", "Robert", "Smith", "Peter"];
+  names.forEach((name) => print(name));
+  
+  var mappedNames = names.map((name) => "Absconding $name").toList();
+  print(mappedNames);
+}
+
+
+//code 7.6
+void setFunction(){
+  //set is an unordered collections of unique items
+  //cannot get elements by INDEX since the items are unordered
+  //1. method of creating Set
+  Set<String> countries = Set.from(['India', 'England', 'US']);
+  Set<int> numbers = Set.from([1, 45, 58]);
+  Set<int> moreNumbers = Set();
+  moreNumbers.add(178);
+  moreNumbers.add(568);
+  moreNumbers.add(569);
+
+  //1. method
+  for(int element in numbers){
+    print(element);
+  }
+  print("-----------");
+
+  //2. method
+  countries.forEach((v) => print('${v}'));
+  print("-----------");
+  for(int element in moreNumbers){
+    if(moreNumbers.lookup(178) == 178){
+      print(moreNumbers);
+      break;
+    }
+  }
+
+  //set
+  var fruitCollection = {'Mango', 'Apple', 'Jack fruit'};
+  print(fruitCollection.lookup('Something Else'));
+  //it gives null
+  //lists
+  List fruitCollections = ['Mango', 'Apple', 'Jack fruit'];
+  var myIntegers = [1, 2, 3, 'non-integer object'];
+  print(myIntegers[3]);
+  print(fruitCollections[0]);
+}
+
+main(List<String> arguments){
+  setFunction();
+}
+
+
+//code 7.7
+void mapFunction(){
+  //unordered collection of key=>value pair
+  Map<String, String> countries = Map();
+  countries['India'] = "Asia";
+  countries["Germany"] = "Europe";
+  countries["France"] = "Europe";
+  countries["Brazil"] = "South America";
+
+  //1. method we can obtain key or value
+  for(var key in countries.keys){
+    print("Country's name: $key");
+  }
+  print("-----------");
+  for(String value in countries.values){
+    print("Continent's name: $value");
+  }
+
+  //2. method
+  countries.forEach((key, value) => print("Country: $key and Continent: $value"));
+  //we can update any map very easily
+  if(countries.containsKey("Germany")){
+    countries.update("Germany", (value) => "European Union");
+    print("Updated country Germany.");
+    countries.forEach((key, value) => print("Country: $key and Continent: $value"));
+  }
+
+  //we can remove any country
+  countries.remove("Brazil");
+  countries.forEach((key, value) => print("Country: $key and Continent: $value"));
+  print("Barzil has been removed successfully.");
+  print("-----------");
+
+  //3. method of creating a map
+  Map<String, int> telephoneNumbersOfCustomers = {
+    "John" : 1234,
+    "Mac" : 7534,
+    "Molly" : 8934,
+    "Plywod" : 1275,
+    "Hagudu" : 2534
+  };
+
+  telephoneNumbersOfCustomers.forEach((key, value) => print("Customer: $key and Contact Number: $value"));
+}
+
+main(List<String> arguments){
+  mapFunction();
+}
+
+
+//code 7.8
+main(){
+  var name;
+  var age;
+  List<Map<String, dynamic>> users = [
+    { name: "Peter", age: 18 },
+    { name: "Mira", age: 20 },
+    { name: "Jason", age: 22 },
+  ];
+  var is18AndOver = users.every((user) => user[age] >= 18);
+  print(is18AndOver);
+
+}
+
+
+
+//code 7.9
+main(){
+  var name;
+  var age;
+  List<Map<String, dynamic>> users = [
+    { name: "Peter", age: 18 },
+    { name: "Mira", age: 20 },
+    { name: "Jason", age: 22 },
+  ];
+  var isEighteenAndOver = users.every((user) => user[age] >= 18);
+  print(isEighteenAndOver);
+
+  var hasNamesWithLetterA = users.every((user) => user.toString().startsWith("A"));
+  print(hasNamesWithLetterA);
+
+}
+
+
+//code 7.10
+main(){
+  var name;
+  var age;
+  List<Map<String, dynamic>> users = [
+    { name: "Peter", age: 18 },
+    { name: "Mira", age: 20 },
+    { name: "Jason", age: 22 },
+    { name: "Morgan", age: 32 },
+    { name: "Mary", age: 50 },
+    { name: "Will", age: 86 },
+    { name: "Bruce", age: 96 },
+  ];
+  var isEighteenAndOver = users.every((user) => user[age] >= 18);
+  print(isEighteenAndOver);
+
+  var hasNamesWithLetterA = users.every((user) => user.toString().startsWith("A"));
+  print(hasNamesWithLetterA);
+
+  var overTwentyOne = users.where((user) => user[age] > 21);
+  print(overTwentyOne.length);
+
+}
+
+
+//code 7.11
+main(){
+  var name;
+  var age;
+  List<Map<String, dynamic>> users = [
+    { name: "Peter", age: 18 },
+    { name: "Mira", age: 20 },
+    { name: "Jason", age: 22 },
+    { name: "Morgan", age: 32 },
+    { name: "Mary", age: 50 },
+    { name: "Will", age: 86 },
+    { name: "Bruce", age: 96 },
+  ];
+  var isEighteenAndOver = users.every((user) => user[age] >= 18);
+  print(isEighteenAndOver);
+
+  var hasNamesWithLetterA = users.every((user) => user.toString().startsWith("A"));
+  print(hasNamesWithLetterA);
+
+  var overTwentyOne = users.where((user) => user[age] > 21);
+  print(overTwentyOne.length);
+
+  var underEighteen = users.singleWhere((user) => user[age] < 18, orElse: () => null);
+  print(underEighteen);
+
+}
+
+
+//code 7.12
+import 'dart:collection'; // we are about to import some extra methods from collection library
+main(List<String> arguments){
+  Queue myQueue = new Queue();
+  print("Default implementation ${myQueue.runtimeType}");
+
+  myQueue.add("Sanjib");
+  myQueue.add(54);
+  myQueue.add("Howrah");
+  myQueue.add("sanjib12sinha@gmail.com");
+  for(var allTheQueues in myQueue){
+    print(allTheQueues);
+  }
+  print("----------");
+
+  print("We are removing the first element ${myQueue.elementAt(0)}.");
+  myQueue.removeFirst();
+  for(var allTheQueues in myQueue){
+    print(allTheQueues);
+  }
+  print("----------");
+
+  print("We are removing the last element ${myQueue.elementAt(2)}.");
+  myQueue.removeLast();
+  for(var allTheQueues in myQueue){
+    print(allTheQueues);
+  }
+}
+
+
+
